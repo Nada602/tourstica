@@ -1,0 +1,17 @@
+/* Title truncation */
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a120b;
+  margin: 0;
+}
+
+/* Smaller font on very small screens */
+@media (max-width: 360px) {
+  .title {
+    font-size: 13px;
+  }
+}

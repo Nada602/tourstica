@@ -1,0 +1,51 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  z-index: 20;
+}
+
+.navBrand {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 22px;
+}
+
+.navLink {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 2px solid rgb(241, 111, 18);
+}
+.navUser {
+  color: #fff;
+  font-size: 13px;
+}
+
+.nav {
+  transition:
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    color 0.35s ease;
+
+  z-index: 9999;
+}

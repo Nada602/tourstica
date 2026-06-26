@@ -1,0 +1,31 @@
+/* Active filter tab */
+.tabActive {
+  background: #c0442a !important;
+  color: #ffffff !important;
+}
+.cardRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .cardRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .cardRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cardRow {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
