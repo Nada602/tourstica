@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Flame, Sparkles, TrendingUp } from "lucide-react";
-import TripCard from "../../common/TripCard/TripCard";
 import styles from "./trending.module.css";
-import Header from "../../common/Header/Header";
-
+import Header from "../../../../components/common/Header/Header";
+import TripCard from "../../../../components/common/TripCard/TripCard";
 // ── Data ──────────────────────────────────────────────────────
 const TRIPS = [
   {
@@ -83,25 +82,6 @@ export default function Trending() {
 
   return (
     <section className="w-full bg-[#f9f7f4] py-8 sm:py-12 px-4 sm:px-6 md:px-10">
-      {/* ── Header ──────────────────────────────────────────── */}
-      {/* <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5 sm:mb-6">
-        <div>
-          <p className="flex items-center gap-2 text-xs font-semibold text-[#c0442a] uppercase tracking-widest mb-1.5 sm:mb-2">
-            <span className="w-5 h-px bg-[#c0442a] inline-block" />
-            What is New
-          </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1a120b] leading-tight">
-            <span className="text-[#c0442a]">Trending</span> right now
-          </h2>
-        </div>
-
-        <a
-          href="#"
-          className="text-sm font-semibold text-[#c0442a] hover:opacity-75 transition-opacity whitespace-nowrap sm:mt-2 self-start"
-        >
-          Browse all experiences →
-        </a>
-      </div> */}
       <Header
         eyebrow="What is New"
         title="Trending right now"

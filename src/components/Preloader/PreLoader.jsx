@@ -58,7 +58,8 @@ export default function PreLoader({ isLoading, setIsLoading }) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark-brown overflow-hidden bg-amber-800"
+      className="fixed inset-0  flex flex-col items-center justify-center bg-dark-brown overflow-hidden bg-amber-800"
+      style={{ zIndex: 9999 }}
     >
       <div ref={logoRef} className="relative mb-8">
         <img src={heroImg} alt="Tourstica Logo" className="w-32 md:w-60" />

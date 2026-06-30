@@ -1,7 +1,7 @@
 import React from "react";
 // import { MapPin } from "lucide-react";
 import styles from "./destinations.module.css";
-import Header from "../../common/Header/Header";
+import Header from "../../../../components/common/Header/Header";
 
 const DESTINATIONS = [
   {
@@ -55,23 +55,7 @@ const SLOT_CLASSES = [
 export default function Destinations() {
   return (
     <section className={styles.section}>
-      {/* Header */}
-      {/* <div className={styles.header}>
-        <div className={styles.headerLeft}>
-          <span className={styles.eyebrow}>Explore Cities</span>
-          <h2 className={styles.heading}>
-            Morocco's Most <span className={styles.accent}>Beautiful</span>{" "}
-            Destinations
-          </h2>
-          <p className={styles.subheading}>
-            From imperial cities to the vast Sahara — every destination is a
-            unique experience
-          </p>
-        </div>
-        <a href="#" className={styles.viewAll}>
-          View All →
-        </a>
-      </div> */}
+    
       <Header
         eyebrow="Explore Cities"
         title="Morocco's Most Beautiful Destinations"

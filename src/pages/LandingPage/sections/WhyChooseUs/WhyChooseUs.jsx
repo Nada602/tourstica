@@ -9,7 +9,7 @@ import {
   Globe, // Full Morocco Coverage
   Sparkles, // Exclusive Experiences
 } from "lucide-react";
-import Header from "../../common/Header/Header";
+import Header from "../../../../components/common/Header/Header";
 const FEATURES = [
   {
     id: 0,
@@ -85,7 +85,7 @@ export default function WhyChooseUs() {
     <section className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
         {/* ── Left: Images ──────────────────────────────────── */}
-        <div className="relative w-full max-w-sm lg:max-w-none lg:w-[42%] flex-shrink-0 h-72 sm:h-80 md:h-96 lg:h-[420px]">
+        <div className="relative w-full max-w-sm lg:max-w-none lg:w-[42%] shrink-0 h-72 sm:h-80 md:h-96 lg:h-[420px]">
           {/* Main large image */}
           <div className="absolute top-0 left-0 w-[72%] h-[78%] rounded-2xl overflow-hidden shadow-lg">
             <img

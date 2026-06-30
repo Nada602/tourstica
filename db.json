@@ -1,0 +1,262 @@
+{
+  "trips": [
+    {
+      "id": 1,
+      "title": "Sahara Desert Camel Trek & Overnight Camp",
+      "location": "Merzouga",
+      "gallery": [
+        "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0",
+        "https://images.unsplash.com/photo-1509316785289-025f5b846b35",
+        "https://images.unsplash.com/photo-1452960962994-acf4fd70b632"
+      ],
+      "duration": "2 Days",
+      "maxGroupSize": 12,
+      "rate": 4.9,
+      "description": "Embark on an unforgettable journey into the heart of the Sahara Desert. This carefully curated experience combines the thrill of adventure with riding golden dunes to sharing traditional tea, every moment is designed to create lasting memories.",
+      "includes": [
+        "Professional guides",
+        "Camel ride",
+        "Lunch & drinks",
+        "Sandboarding equipment",
+        "Photos & videos"
+      ],
+      "notIncluded": ["Travel insurance", "Tips", "Personal expenses"],
+      "price": 4509,
+      "discountPercentage": 49,
+      "availableDates": [
+        { "date": "2026-07-10", "state": "available" },
+        { "date": "2026-07-11", "state": "limited" },
+        { "date": "2026-07-12", "state": "full" },
+        { "date": "2026-07-15", "state": "available" },
+        { "date": "2026-07-20", "state": "limited" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Old Medina Walking Tour",
+      "location": "Marrakesh",
+      "gallery": [
+        "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43",
+        "https://images.unsplash.com/photo-1539020140153-e479b8c1c3a3",
+        "https://images.unsplash.com/photo-1539650116574-75c0c6d57b81"
+      ],
+      "duration": "3 h",
+      "maxGroupSize": 15,
+      "rate": 4.7,
+      "description": "Wander through the labyrinthine alleys of Marrakesh's historic Medina with a local guide. Discover hidden souks, ancient riads, and the vibrant energy of Jemaa el-Fnaa square.",
+      "includes": ["Local guide", "Mint tea stop", "Small group"],
+      "notIncluded": ["Lunch", "Souvenirs", "Hotel pickup"],
+      "price": 350,
+      "discountPercentage": 20,
+      "availableDates": [
+        { "date": "2026-07-08", "state": "available" },
+        { "date": "2026-07-09", "state": "available" },
+        { "date": "2026-07-14", "state": "full" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Atlantic Coast Surf & Water Sports",
+      "location": "Essaouira",
+      "gallery": [
+        "https://images.unsplash.com/photo-1502680390469-be75c86b636f",
+        "https://images.unsplash.com/photo-1502933691298-84fc14542831",
+        "https://images.unsplash.com/photo-1530870110042-98b2cb110834"
+      ],
+      "duration": "4 h",
+      "maxGroupSize": 8,
+      "rate": 4.8,
+      "description": "Catch the Atlantic waves on this beginner-friendly surf experience along Essaouira's windswept coastline, followed by a relaxed beachside lunch.",
+      "includes": [
+        "Surf instructor",
+        "Equipment rental",
+        "Wetsuit",
+        "Beach lunch"
+      ],
+      "notIncluded": ["Transport from Marrakesh", "Photos"],
+      "price": 600,
+      "discountPercentage": 15,
+      "availableDates": [
+        { "date": "2026-07-11", "state": "available" },
+        { "date": "2026-07-12", "state": "available" },
+        { "date": "2026-07-18", "state": "limited" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Blue Pearl of Chefchaouen Day Trip",
+      "location": "Chefchaouen",
+      "gallery": [
+        "https://images.unsplash.com/photo-1595330106749-1d3e1cd9c5e7",
+        "https://images.unsplash.com/photo-1599639668273-9e4e4c3a1c3a",
+        "https://images.unsplash.com/photo-1604608672516-f1b9b1d8b8f2"
+      ],
+      "duration": "1 Day",
+      "maxGroupSize": 10,
+      "rate": 4.9,
+      "description": "Explore the stunning blue-painted streets of Chefchaouen, nestled in the Rif Mountains. A peaceful escape full of charm, culture, and breathtaking photo opportunities.",
+      "includes": [
+        "Round-trip transport",
+        "Local guide",
+        "Free time in the medina"
+      ],
+      "notIncluded": ["Meals", "Personal shopping"],
+      "price": 750,
+      "discountPercentage": 10,
+      "availableDates": [
+        { "date": "2026-07-13", "state": "available" },
+        { "date": "2026-07-19", "state": "available" },
+        { "date": "2026-07-26", "state": "limited" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Atlas Mountains & Berber Villages Trek",
+      "location": "Imlil",
+      "gallery": [
+        "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43",
+        "https://images.unsplash.com/photo-1518684079-3c830dcef090",
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7"
+      ],
+      "duration": "2 Days",
+      "maxGroupSize": 10,
+      "rate": 4.85,
+      "description": "Trek through the High Atlas Mountains, visiting traditional Berber villages, terraced fields, and waterfalls, with an overnight stay in a local guesthouse.",
+      "includes": [
+        "Mountain guide",
+        "Guesthouse stay",
+        "Breakfast & dinner",
+        "Mule support"
+      ],
+      "notIncluded": ["Lunch", "Travel insurance"],
+      "price": 1800,
+      "discountPercentage": 25,
+      "availableDates": [
+        { "date": "2026-07-16", "state": "available" },
+        { "date": "2026-07-17", "state": "limited" },
+        { "date": "2026-07-24", "state": "full" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fes Imperial City Cultural Tour",
+      "location": "Fes",
+      "gallery": [
+        "https://images.unsplash.com/photo-1553603227-2358aabe821e",
+        "https://images.unsplash.com/photo-1570939274717-7eda259b50ed",
+        "https://images.unsplash.com/photo-1599639668273-9e4e4c3a1c3a"
+      ],
+      "duration": "5 h",
+      "maxGroupSize": 14,
+      "rate": 4.6,
+      "description": "Step back in time through Fes el-Bali, the world's largest car-free urban area, visiting historic madrasas, tanneries, and bustling artisan souks.",
+      "includes": [
+        "Expert historian guide",
+        "Tannery visit",
+        "Traditional lunch"
+      ],
+      "notIncluded": ["Hotel pickup", "Personal purchases"],
+      "price": 480,
+      "discountPercentage": 0,
+      "availableDates": [
+        { "date": "2026-07-09", "state": "available" },
+        { "date": "2026-07-15", "state": "available" },
+        { "date": "2026-07-22", "state": "available" }
+      ]
+    }
+  ],
+
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Mona Ashraf",
+      "email": "mona@example.com",
+      "password": "password123",
+      "phone": "+212421040",
+      "preferredLanguage": "English"
+    },
+    {
+      "id": 2,
+      "fullName": "Youssef Amrani",
+      "email": "youssef@example.com",
+      "password": "password123",
+      "phone": "+212600112233",
+      "preferredLanguage": "Arabic"
+    }
+  ],
+
+  "bookings": [
+    {
+      "id": 1,
+      "tripId": 1,
+      "userId": 1,
+      "date": "2026-05-19",
+      "guestNo": 2,
+      "price": 264,
+      "experienceType": "group",
+      "bookingState": "confirmed"
+    },
+    {
+      "id": 2,
+      "tripId": 3,
+      "userId": 1,
+      "date": "2026-07-12",
+      "guestNo": 1,
+      "price": 600,
+      "experienceType": "private",
+      "bookingState": "confirmed"
+    },
+    {
+      "id": 3,
+      "tripId": 2,
+      "userId": 2,
+      "date": "2026-07-09",
+      "guestNo": 4,
+      "price": 1400,
+      "experienceType": "group",
+      "bookingState": "cancelled"
+    }
+  ],
+
+  "reviews": [
+    {
+      "id": 1,
+      "tripId": 1,
+      "userId": 1,
+      "rate": 5,
+      "comment": "Absolutely magical experience. The sunset over the dunes was breathtaking and our guide Hassan was incredibly knowledgeable. Sleeping under the stars was a dream come true.",
+      "createdAt": "2026-05-07"
+    },
+    {
+      "id": 2,
+      "tripId": 1,
+      "userId": 2,
+      "rate": 4,
+      "comment": "Great trip overall, the camel ride was longer than expected but the camp itself was beautiful and the food was delicious.",
+      "createdAt": "2026-04-22"
+    },
+    {
+      "id": 3,
+      "tripId": 3,
+      "userId": 1,
+      "rate": 5,
+      "comment": "Best surf lesson I've had. The instructor was patient and the beach lunch afterward was a perfect way to end the day.",
+      "createdAt": "2026-06-01"
+    }
+  ],
+
+  "wishlist": [
+    {
+      "id": 1,
+      "tripId": 4,
+      "userId": 1,
+      "savedAt": "2026-06-10"
+    },
+    {
+      "id": 2,
+      "tripId": 5,
+      "userId": 1,
+      "savedAt": "2026-06-15"
+    }
+  ]
+}

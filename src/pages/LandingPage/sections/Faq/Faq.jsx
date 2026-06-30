@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import Header from "../../common/Header/Header";
+import Header from "../../../../components/common/Header/Header";
 
 // ── Data ──────────────────────────────────────────────────────
 const FAQS = [

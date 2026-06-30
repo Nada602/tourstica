@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Navbar from "../../layout/Navbar/Navbar";
 import styles from "./hero.module.css";
 import DestinationCarousel from "./DestinationCarousel";
+import Navbar from "../../../../components/layout/Navbar/Navbar";
 
 const DESTINATIONS = [
   {
@@ -37,13 +37,13 @@ const DESTINATIONS = [
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [display, setDisplay] = useState(0); 
+  const [display, setDisplay] = useState(0);
 
   const bgRefs = useRef([]);
   const textRef = useRef(null);
   const heroRef = useRef(null);
 
-  const currentRef = useRef(0); 
+  const currentRef = useRef(0);
   const busyRef = useRef(false);
   const tlRef = useRef(null);
   const autoRef = useRef(null);
@@ -127,7 +127,7 @@ export default function Hero() {
       ))}
 
       <div className={styles.overlay} />
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={styles.sideLine} />
       <div className={styles.sideCounter}>
         {String(current + 1).padStart(2, "0")}/0{DESTINATIONS.length}

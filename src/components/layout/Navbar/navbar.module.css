@@ -7,6 +7,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 22px;
+  transition:
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    color 0.35s ease;
+
   z-index: 20;
 }
 
@@ -42,10 +47,4 @@
 }
 
 .nav {
-  transition:
-    background-color 0.35s ease,
-    box-shadow 0.35s ease,
-    color 0.35s ease;
-
-  z-index: 9999;
 }

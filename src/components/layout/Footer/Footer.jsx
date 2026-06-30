@@ -36,7 +36,7 @@ const CONTACT_INFO = [
 // ── Reusable column ───────────────────────────────────────────
 function FooterColumn({ title, children }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       <h4 className="text-white font-bold text-sm tracking-wide">{title}</h4>
       {children}
     </div>
@@ -46,7 +46,7 @@ function FooterColumn({ title, children }) {
 // ── Main Footer ───────────────────────────────────────────────
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#1a120b] py-12 px-4 sm:px-6 md:px-10">
+    <footer className="w-full bg-[#1a120b] py-12 px-4 sm:px-6 md:px-10 mt-44">
       <div className="max-w-6xl mx-auto">
         {/* ── Top grid ────────────────────────────────────── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
@@ -55,7 +55,7 @@ export default function Footer() {
             <span className="text-[#c0442a] font-extrabold text-xl tracking-tight">
               Tour<span className="text-white">stica</span>
             </span>
-            <p className="text-white/50 text-xs leading-relaxed max-w-[200px]">
+            <p className="text-white/50 text-xs leading-relaxed max-w-50">
               Discover the magic of Morocco through authentic, locally-curated
               travel experiences.
             </p>
@@ -112,10 +112,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {CONTACT_INFO.map(({ Icon, text }) => (
                 <li key={text} className="flex items-start gap-2">
-                  <Icon
-                    size={14}
-                    className="text-[#c0442a] flex-shrink-0 mt-0.5"
-                  />
+                  <Icon size={14} className="text-[#c0442a] shrink-0 mt-0.5" />
                   <span className="text-white/50 text-xs leading-relaxed">
                     {text}
                   </span>

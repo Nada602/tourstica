@@ -1,4 +1,4 @@
-import Header from "../../common/Header/Header";
+import Header from "../../../../components/common/Header/Header";
 
 // ── Data ──────────────────────────────────────────────────────
 const REVIEWS = [
@@ -82,7 +82,6 @@ function ReviewCard({ rating, text, name, location, trip, date, avatar }) {
   );
 }
 
-// ── Main Section ──────────────────────────────────────────────
 export default function Testimonials() {
   return (
     <section className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10">
