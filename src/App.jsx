@@ -1,5 +1,5 @@
 import MainLayout from "./layouts/MainLayout";
-import Router from "./routes/router";
+import Router from "./routes/Router";
 
 function App() {
   return (

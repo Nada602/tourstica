@@ -78,7 +78,7 @@ export default function DestinationCarousel() {
   );
 
   return (
-    <div className="flex items-start gap-4 overflow-visible shrink-0">
+    <div className="flex items-start gap-4 overflow-visible shrink-0 mr-5">
       {visibleCards.map((dest, i) => (
         <DestinationCard
           key={`${dest.id}-${startIndex}`}

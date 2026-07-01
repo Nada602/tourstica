@@ -67,7 +67,7 @@ export default function Navbar() {
       {/* Auth buttons */}
       <div className="flex items-center gap-2">
         <button
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/auth/login")}
           className={`text-sm font-semibold px-3 py-2 transition-colors duration-200 hover:text-[#c0442a] ${
             scrolled || location.pathname !== "/"
               ? "text-[#1a120b]"
@@ -77,7 +77,7 @@ export default function Navbar() {
           Log in
         </button>
         <button
-          onClick={() => navigate("/register")}
+          onClick={() => navigate("/auth/register")}
           className={`text-sm font-semibold px-4 py-2 rounded-lg border transition-colors duration-200 ${
             scrolled || location.pathname !== "/"
               ? "border-[#c0442a] text-[#c0442a] hover:bg-[#c0442a] hover:text-white"
