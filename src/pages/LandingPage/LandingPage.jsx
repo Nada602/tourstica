@@ -12,13 +12,11 @@ import Testimonials from "./sections/Testimonials/Testimonials.jsx";
 import FAQ from "./sections/Faq/Faq.jsx";
 import Categories from "./sections/Category/Categories.jsx";
 import FlashOffers from "./sections/FlashOffers/FlashOffers.jsx";
-import PreLoader from "../../components/PreLoader/PreLoader.jsx";
 
 // import Trending from "../../components/sections/Trending/Trending";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Home() {
-
   useEffect(() => {
     window.history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
@@ -33,7 +31,6 @@ export default function Home() {
 
   return (
     <>
-
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Hero />
