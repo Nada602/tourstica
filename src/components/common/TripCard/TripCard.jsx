@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./TripCard.module.css";
+import styles from "./tripCard.module.css";
 import { Clock, Heart } from "lucide-react";
 
 // ── Star Rating ───────────────────────────────────────────────
