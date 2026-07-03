@@ -2,24 +2,34 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import DestinationCard from "../../../../components/common/DestinationCard";
+import bg1 from "@/assets/bg/bg1.avif";
+import bg2 from "@/assets/bg/bg2.avif";
+import bg3 from "@/assets/bg/bg3.jpg";
+import bg4 from "@/assets/bg/bg4.avif";
+
 
 const destinations = [
   {
     id: 1,
-    image: "./src/assets/bg/bg1.avif",
+    image: bg1,
     title: "Buddha temple, Thailand",
     activeDot: 0,
   },
   {
     id: 2,
-    image: "./src/assets/bg/bg2.avif",
+    image: bg2,
     title: "Broken Beach, Bali",
     activeDot: 1,
   },
-  { id: 3, image: "./src/assets/bg/bg3.jpg", title: "Kerala", activeDot: 0 },
+  {
+    id: 3,
+    image: bg3,
+    title: "Kerala",
+    activeDot: 0,
+  },
   {
     id: 4,
-    image: "./src/assets/bg/bg4.avif",
+    image: bg4,
     title: "Kerala",
     activeDot: 0,
     variant: "edge",
