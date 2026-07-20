@@ -1,10 +1,10 @@
-import img1 from "/src/assets/categories/343e52df865372d943b8365cd20763119381d88c.png";
-import img2 from "/src/assets/categories/47a637ed8df5e0f3f9e068e2e0b5377a9f1cd66e.png";
-import img3 from "/src/assets/categories/234426a303569e0161335d3d0db7e6c85233117e.png";
-import img4 from "/src/assets/categories/photo-1695601758107-cffeeceace44.avif";
-import img5 from "/src/assets/categories/1de492c0082a12e2efd622ce7597a050ccb9ec3f.png";
-import img6 from "/src/assets/categories/3abfdf6b6932e539dfaeebc8e816727ea43d1f81.png";
-import img7 from "/src/assets/categories/715776298b0dd6fd80fce29d0a6203a93ca1214d.jpg";
+import img1 from "@/assets/categories/343e52df865372d943b8365cd20763119381d88c.png";
+import img2 from "@/assets/categories/47a637ed8df5e0f3f9e068e2e0b5377a9f1cd66e.png";
+import img3 from "@/assets/categories/234426a303569e0161335d3d0db7e6c85233117e.png";
+import img4 from "@/assets/categories/photo-1695601758107-cffeeceace44.avif";
+import img5 from "@/assets/categories/1de492c0082a12e2efd622ce7597a050ccb9ec3f.png";
+import img6 from "@/assets/categories/3abfdf6b6932e539dfaeebc8e816727ea43d1f81.png";
+import img7 from "@/assets/categories/715776298b0dd6fd80fce29d0a6203a93ca1214d.jpg";
 
 const CATEGORIES = [
   {
@@ -54,7 +54,7 @@ const CATEGORIES = [
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Header from "../../../../components/common/Header/Header";
+import Header from "@/components/common/Header/Header";
 
 export default function NewsTicker() {
   const rowRef = useRef(null);

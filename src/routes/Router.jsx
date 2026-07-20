@@ -7,7 +7,7 @@ import MyJourney from "../features/myJourney/MyJourney";
 import TripDetails from "../features/trips/TripDetails";
 import CheckoutPage from "../features/booking/CheckoutPage";
 import BookingConfirmPage from "../features/booking/BookingConfirmPage";
-import ForgetPassword from "../features/auth/Forms/ForgetPassword";
+import ForgetPassword from "../features/auth/Forms/ForgotPassword";
 import VerfiyEmail from "../features/auth/Forms/VerfiyEmail";
 import CreatePassword from "../features/auth/Forms/CreatePassword";
 import ProtectedRoute from "./ProtectedRoute";
@@ -18,7 +18,6 @@ import AuthLayout from "../layouts/AuthLayout";
 export default function Router() {
   return (
     <Routes>
-
       <Route path="/" element={<MainLayout />}>
         <Route index element={<LandingPage />} />
         <Route element={<ProtectedRoute />}>
@@ -27,17 +26,16 @@ export default function Router() {
           <Route path="/booking-confirm/:id" element={<BookingConfirmPage />} />
         </Route>
 
-        <Route path="/Trips" element={<Trips />} />
-        <Route path="/Trip/:id" element={<TripDetails />} />
-
+        <Route path="/trips" element={<Trips />} />
+        <Route path="/trip/:id" element={<TripDetails />} />
 
         {/* auth route */}
       </Route>
       <Route path="/auth" element={<AuthLayout />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="forget-password" element={<ForgetPassword />} />
-        <Route path="verify-email" element={<VerfiyEmail />} />
+        <Route path="forgot-password" element={<ForgetPassword />} />
+        <Route path="verfiy-email" element={<VerfiyEmail />} />
         <Route path="create-password" element={<CreatePassword />} />
       </Route>
     </Routes>

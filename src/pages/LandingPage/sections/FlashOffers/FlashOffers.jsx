@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Header from "@/components/common/Header/Header";
 
 // ── Countdown Hook ────────────────────────────────────────────
 function useCountdown(targetDate) {
@@ -138,15 +139,7 @@ export default function FlashOffers() {
       <div className="max-w-6xl mx-auto">
         {/* Header row */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 sm:mb-8">
-          <div>
-            <p className="flex items-center gap-1.5 text-xs font-semibold text-[#c0442a] uppercase tracking-widest mb-1.5">
-              <span className="w-4 h-px bg-[#c0442a] inline-block" />
-              Limited Time
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1a120b]">
-              Flash offers
-            </h2>
-          </div>
+          <Header eyebrow="Limited Time" title="Flash offers" align="left" />
 
           {/* Countdown */}
           <div className="flex items-center gap-1.5 sm:gap-2">

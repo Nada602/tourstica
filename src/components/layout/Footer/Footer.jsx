@@ -36,7 +36,7 @@ const CONTACT_INFO = [
 // ── Reusable column ───────────────────────────────────────────
 function FooterColumn({ title, children }) {
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4 z-20 ">
       <h4 className="text-white font-bold text-sm tracking-wide">{title}</h4>
       {children}
     </div>

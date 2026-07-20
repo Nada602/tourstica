@@ -15,25 +15,16 @@ import FlashOffers from "./sections/FlashOffers/FlashOffers.jsx";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-export default function Home() {
-
+export default function LandingPage() {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }, []);
-
-  useGSAP(() => {
-    ScrollSmoother.create({
-      smooth: 3,
-      effects: true,
-    });
-  });
-
+ 
+  
   return (
     <>
-
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
+     
           <Hero />
           <Destinations />
           <Categories />
@@ -43,8 +34,7 @@ export default function Home() {
           <Plans />
           <Testimonials />
           <FAQ />
-        </div>
-      </div>
+        
     </>
   );
 }

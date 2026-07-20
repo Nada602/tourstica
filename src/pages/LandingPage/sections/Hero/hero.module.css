@@ -127,3 +127,13 @@
     z-index: 20; */
   }
 }
+
+@media (max-width: 1100px) {
+  .heroCarsousel {
+    display: none;
+    /* position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 20; */
+  }
+}

@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import styles from "./hero.module.css";
 import DestinationCarousel from "./DestinationCarousel";
-import Navbar from "../../../../components/layout/Navbar/Navbar";
+import Navbar from "@/components/layout/Navbar/Navbar";
+import { useGSAP } from "@gsap/react";
+import { ScrollSmoother } from "gsap/all";
 
 const DESTINATIONS = [
   {
@@ -36,6 +38,14 @@ const DESTINATIONS = [
 ];
 
 export default function Hero() {
+  // useGSAP(() => {
+  //   const smoother = ScrollSmoother.create({
+  //     smooth: 3,
+  //     effects: true,
+  //   });
+
+  //   return () => smoother.kill();
+  // });
   const [current, setCurrent] = useState(0);
   const [display, setDisplay] = useState(0);
 
@@ -57,36 +67,32 @@ export default function Hero() {
     busyRef.current = true;
     currentRef.current = next;
 
-    tlRef.current?.kill(); // أمان: تقفيل أي تايملاين سابقة
-
+    tlRef.current?.kill();
     const tl = gsap.timeline({
       onComplete: () => {
         busyRef.current = false;
       },
     });
 
-    // 1) النص بيخرج (fade + slide)
     tl.to(textRef.current, {
       x: -40,
       opacity: 0,
       duration: 0.35,
       ease: "power3.inOut",
-      onComplete: () => setDisplay(next), // بنبدّل المحتوى وهو مخفي بالكامل
+      onComplete: () => setDisplay(next),
     });
 
-    // 2) الخلفية القديمة تختفي، والجديدة تظهر مع slide خفيف (متزامنين مع بعض)
     tl.to(
       bgRefs.current[prev],
       { opacity: 0, duration: 0.55, ease: "power3.out" },
-      0.2, // تبدأ بعد ما النص يبدأ يخرج بشوية، مش من الصفر
+      0.2,
     ).fromTo(
       bgRefs.current[next],
       { opacity: 0, xPercent: dir * 8 },
       { opacity: 1, xPercent: 0, duration: 0.55, ease: "power3.out" },
-      "<", // في نفس وقت التوين اللي قبلها
+      "<",
     );
 
-    // 3) النص الجديد بيدخل (بعد ما المحتوى اتبدّل في الخطوة 1)
     tl.set(textRef.current, { x: 30, opacity: 0 }).to(textRef.current, {
       x: 0,
       opacity: 1,
@@ -113,6 +119,8 @@ export default function Hero() {
   const dest = DESTINATIONS[display];
 
   return (
+    // <div id="smooth-wrapper" className="h-screen overflow-hidden">
+    //   <div id="smooth-content">
     <div ref={heroRef} className={styles.hero}>
       {DESTINATIONS.map((d, i) => (
         <div
@@ -144,5 +152,7 @@ export default function Hero() {
         <DestinationCarousel />
       </div>
     </div>
+    //   </div>
+    // </div>
   );
 }

@@ -32,7 +32,7 @@ export default function Navbar() {
         ${styles.nav}
         fixed top-0 left-0 right-0 
         flex items-center justify-between
-        px-4 sm:px-6 md:px-10 py-4
+        px-4  sm:px-6 md:px-10 py-4
         ${
           scrolled || location.pathname !== "/"
             ? "bg-white shadow-md text-[#1a120b]"
@@ -42,7 +42,7 @@ export default function Navbar() {
     >
       {/* Brand */}
       <h1
-        className={`font-extrabold text-xl tracking-tight ${scrolled || location.pathname !== "/" ? "text-[#1a120b]" : "text-white"}`}
+        className={`font-extrabold font-serif text-xl tracking-tight ${scrolled || location.pathname !== "/" ? "text-[#1a120b]" : "text-white"}`}
       >
         Tour<span className="text-[#c0442a]">stica</span>
       </h1>
@@ -53,7 +53,7 @@ export default function Navbar() {
           <a
             href={l.link}
             key={l.label}
-            className={`text-sm font-semibold cursor-pointer transition-colors duration-200 hover:text-[#c0442a] ${
+            className={`text-sm font-semibold font-serif cursor-pointer transition-colors duration-200 hover:text-[#c0442a] ${
               scrolled || location.pathname !== "/"
                 ? "text-[#1a120b]"
                 : "text-white/90"
@@ -68,7 +68,7 @@ export default function Navbar() {
       <div className="flex items-center gap-2">
         <button
           onClick={() => navigate("/auth/login")}
-          className={`text-sm font-semibold px-3 py-2 transition-colors duration-200 hover:text-[#c0442a] ${
+          className={`text-sm font-semibold font-serif  px-3 py-2 transition-colors duration-200 hover:text-[#c0442a] ${
             scrolled || location.pathname !== "/"
               ? "text-[#1a120b]"
               : "text-white"
@@ -78,7 +78,7 @@ export default function Navbar() {
         </button>
         <button
           onClick={() => navigate("/auth/register")}
-          className={`text-sm font-semibold px-4 py-2 rounded-lg border transition-colors duration-200 ${
+          className={`text-sm font-semibold font-serif px-4 py-2 rounded-lg border transition-colors duration-200 ${
             scrolled || location.pathname !== "/"
               ? "border-[#c0442a] text-[#c0442a] hover:bg-[#c0442a] hover:text-white"
               : "border-white text-white hover:bg-white hover:text-[#1a120b]"

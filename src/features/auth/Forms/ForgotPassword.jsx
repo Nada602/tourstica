@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import HeadingText from "../../../components/ui/HeadingText";
-import TextField from "../../../components/ui/TextField";
-import FieldLabel from "../../../components/ui/FieldLabel";
-import PrimaryButton from "../../../components/ui/PrimaryButton";
-import Divider from "../../../components/ui/Divider";
+import HeadingText from "@/components/ui/HeadingText";
+import TextField from "@/components/ui/TextField";
+import FieldLabel from "@/components/ui/FieldLabel";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import Divider from "@/components/ui/Divider";
 import SecondaryButton from "../../../components/ui/SecondaryButton";
-import Subtext from "../../../components/ui/Subtext";
+import Subtext from "@/components/ui/Subtext";
 
-/**
- * ForgotPasswordForm
- * "Forgot your password?" — pure form content, rendered inside the
- * route AuthLayout's <Outlet />.
- */
-export default function ForgotPasswordForm({ onSubmit, onBackToSignIn }) {
+export default function ForgotPassword({ onSubmit, onBackToSignIn }) {
   const [email, setEmail] = useState("");
 
   function handleSubmit(e) {

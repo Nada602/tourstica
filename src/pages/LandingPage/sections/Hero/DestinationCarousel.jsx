@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import DestinationCard from "../../../../components/common/DestinationCard";
+import DestinationCard from "@/components/common/DestinationCard";
 import bg1 from "@/assets/bg/bg1.avif";
 import bg2 from "@/assets/bg/bg2.avif";
 import bg3 from "@/assets/bg/bg3.jpg";

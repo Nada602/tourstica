@@ -15,7 +15,7 @@ export default function Header({
     return (
       <>
         {parts[0]}
-        <span className="text-[#c0442a]">{accentWord}</span>
+        <span className="text-[#c0442a] italic">{accentWord}</span>
         {parts[1]}
       </>
     );
@@ -35,7 +35,7 @@ export default function Header({
       <div className={isCenter ? "flex flex-col items-center" : ""}>
         {/* Eyebrow */}
         {eyebrow && (
-          <p className="flex items-center gap-2 text-xs font-semibold text-[#c0442a] uppercase tracking-widest mb-2">
+          <p className="flex items-center gap-2 text-xs font-semibold italic text-[#c0442a] uppercase tracking-widest mb-2">
             {!isCenter && (
               <span className="w-5 h-px bg-[#c0442a] inline-block" />
             )}
@@ -45,7 +45,7 @@ export default function Header({
 
         {/* Title */}
         {title && (
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1a120b] leading-tight">
+          <h2 className="text-2xl font-serif sm:text-3xl md:text-4xl font-extrabold text-[#1a120b] leading-tight">
             {renderTitle()}
           </h2>
         )}
@@ -53,7 +53,7 @@ export default function Header({
         {/* Subtitle */}
         {subtitle && (
           <p
-            className={`text-sm text-[#7a6a5e] leading-relaxed mt-2 ${
+            className={`text-sm text-[#7a6a5e] font-sans leading-relaxed mt-2 ${
               isCenter ? "max-w-lg" : "max-w-xl"
             }`}
           >
