@@ -79,15 +79,57 @@ export default function Trips() {
   const [filter, dispatch] = React.useReducer(filterReducer, initialFilters);
   const searchRef = React.useRef(null);
 
+  // const filteredTrips = React.useMemo(() => {
+  //   const query = filter.search.toLowerCase();
+  //   return trips.filter((trip) => {
+  //     const matchesSearch =
+  //       trip.title?.toLowerCase().includes(query) ||
+  //       trip.description?.toLowerCase().includes(query);
+  //     return matchesSearch;
+  //   });
+  // }, [trips, filter.search]);
+  function getDurationBucket(hours) {
+    if (hours < 4) return "Half day (under 4h)";
+    if (hours <= 8) return "Full day (4–8h)";
+    return "Multi-day (8h+)";
+  }
+
   const filteredTrips = React.useMemo(() => {
     const query = filter.search.toLowerCase();
+
     return trips.filter((trip) => {
       const matchesSearch =
         trip.title?.toLowerCase().includes(query) ||
-        trip.description?.toLowerCase().includes(query);
-      return matchesSearch;
+        trip.location?.toLowerCase().includes(query);
+        console.log("matchesSearch:", matchesSearch, "query:", query, "trip.title:", trip.title, "trip.location:", trip.location);
+
+      const matchesCategory =
+        filter.selectedCategories.length === 0 ||
+        filter.selectedCategories.includes(trip.category);
+console.log("matchesCategory:", matchesCategory, "selectedCategories:", filter.selectedCategories, "trip.category:", trip.category);
+      const matchesPrice = trip.price <= filter.priceValue;
+console.log("matchesPrice:", matchesPrice, "trip.price:", trip.price, "filter.priceValue:", filter.priceValue);
+      const matchesDuration =
+        !filter.selectedDuration ||
+        getDurationBucket(trip.duration) === filter.selectedDuration;
+console.log("matchesDuration:", matchesDuration, "trip.duration:", trip.duration, "filter.selectedDuration:", filter.selectedDuration);
+      // No `options` field on trip data yet — every trip passes until that's added
+      const matchesOption = !filter.selectedOption || true;
+
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesPrice &&
+        matchesDuration &&
+        matchesOption
+      );
     });
-  }, [trips, filter.search]);
+  }, [trips, filter]);
+  const priceMax = React.useMemo(
+    () => Math.max(...trips.map((t) => t.price), 0),
+    [trips],
+  );
+
   return (
     <div className="w-full  mt-20  ">
       <div className="  w-full">
@@ -134,7 +176,7 @@ export default function Trips() {
               />
             </div>
             <div className="text-sm text-gray-500">
-              Showing {filteredTrips.length || trips.length} of {trips.length}
+              Showing {filteredTrips.length} of {trips.length}
             </div>
           </div>
         </div>
@@ -153,7 +195,7 @@ export default function Trips() {
                     dispatch({ type: "TOGGLE_CATEGORY", payload: value })
                   }
                   priceValue={filter.priceValue}
-                  priceMax={500}
+                  priceMax={priceMax}
                   selectedQuickPriceRange={filter.selectedQuickPriceRange}
                   onPriceChange={(value) =>
                     dispatch({ type: "SET_PRICE", payload: value })
@@ -180,9 +222,7 @@ export default function Trips() {
           <div className="flex-1 px-4 sm:px-6 md-[60%]  lg:px-0 pb-12 sm:pb-16">
             <div className="flex">
               <h3 className="font-semibold m-4 text-gray-300">
-                <span className="text-black">
-                  {filteredTrips.length || trips.length}
-                </span>
+                <span className="text-black">{filteredTrips.length}</span>
                 Experience Found
               </h3>
               <div className="ml-auto">{/* <Tabs/> */}</div>

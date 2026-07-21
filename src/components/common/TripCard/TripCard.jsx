@@ -21,46 +21,27 @@ function Stars({ rating }) {
   );
 }
 
-/**
- * TripCard
- * A single card used in two contexts:
- *
- *  - variant="grid"      → catalogue / search-results grid.
- *                           Shows a "Featured" badge, a duration pill, a
- *                           heart (wishlist-toggle) button, tag chips, a
- *                           full price block (was/now + discount) and a
- *                           "View" button.
- *
- *  - variant="wishlist"  → the user's saved-items list.
- *                           Shows a "From {price}" pill on the image, a
- *                           trash (remove) button instead of a heart, no
- *                           tags/discount block, and a "Book Now" button.
- *
- * Everything else (image, stars, title, location, rating) is shared so the
- * two views stay visually consistent while only differing where the
- * product actually differs.
- */
 export default function TripCard({
   variant = "grid",
   image,
   title,
   location,
-  category, // e.g. "desert" – only shown in wishlist variant, next to location
+  category,
   rating = 5,
   reviews = 0,
-  duration, // grid only – numeric value in hours
-  tags = [], // grid only – e.g. ["Private option available", "Small group"]
+  duration,
+  tags = [],
   price,
   currency = "MAD",
-  originalPrice, // grid only – numeric value
-  discount, // grid only – numeric value
-  perPersonLabel = "per person", // grid only
-  featured = false, // grid only
-  defaultLiked = false, // grid only – initial heart state
-  onView, // grid: "View" button click
-  onBook, // wishlist: "Book Now" button click
-  onRemove, // wishlist: trash button click
-  onToggleLike, // grid: called with next liked state when heart is clicked
+  originalPrice,
+  discount,
+  perPersonLabel = "per person",
+  featured = false,
+  defaultLiked = false,
+  onView,
+  onBook,
+  onRemove,
+  onToggleLike,
 }) {
   const isWishlist = variant === "wishlist";
   const [liked, setLiked] = useState(defaultLiked);
@@ -75,7 +56,6 @@ export default function TripCard({
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-      {/* ── Image ─────────────────────────────────────────── */}
       <div className="relative h-44 sm:h-48 md:h-52 overflow-hidden flex-shrink-0">
         <img
           src={image}
@@ -84,14 +64,12 @@ export default function TripCard({
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
 
-        {/* Featured badge – grid only */}
         {!isWishlist && featured && (
           <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#c0442a] text-white text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full">
             Featured
           </span>
         )}
 
-        {/* Top-right action button: heart (grid) or trash (wishlist) */}
         <button
           onClick={isWishlist ? onRemove : handleHeartClick}
           aria-label={
@@ -114,7 +92,6 @@ export default function TripCard({
           )}
         </button>
 
-        {/* Duration pill – grid only, bottom-left */}
         {!isWishlist && duration != null && (
           <span className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-black/60 text-white text-[10px] sm:text-[11px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1">
             <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -122,7 +99,6 @@ export default function TripCard({
           </span>
         )}
 
-        {/* "From {price}" pill – wishlist only, bottom-right */}
         {isWishlist && price != null && (
           <span className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-white/90 backdrop-blur-sm text-[#1a120b] text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow">
             From {price} {currency}
@@ -130,9 +106,7 @@ export default function TripCard({
         )}
       </div>
 
-      {/* ── Body ──────────────────────────────────────────── */}
       <div className="p-3 sm:p-4 flex flex-col gap-1.5 sm:gap-2 flex-1">
-        {/* Location (+ category for wishlist) */}
         {location && (
           <p className="text-[10px] sm:text-xs text-gray-400 font-medium flex flex-wrap items-center gap-1">
             {isWishlist && <MapPin className="w-3 h-3 text-[#c0442a]" />}
@@ -143,10 +117,8 @@ export default function TripCard({
           </p>
         )}
 
-        {/* Title */}
         <p className={styles.title}>{title}</p>
 
-        {/* Tags – grid only */}
         {!isWishlist && tags.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {tags.map((tag) => (
@@ -160,7 +132,6 @@ export default function TripCard({
           </div>
         )}
 
-        {/* Rating */}
         <div className="flex items-center gap-1 sm:gap-1.5">
           <Stars rating={rating} />
           <span className="text-xs sm:text-sm font-bold text-[#1a120b]">
@@ -171,7 +142,6 @@ export default function TripCard({
           </span>
         </div>
 
-        {/* Bottom row: price block (grid) OR just the CTA (wishlist) */}
         <div
           className={`border-t border-gray-100 mt-auto pt-2 sm:pt-3 flex items-end gap-2 ${
             isWishlist ? "justify-end" : "justify-between"

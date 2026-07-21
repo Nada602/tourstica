@@ -41,11 +41,13 @@ export default function Navbar() {
       `}
     >
       {/* Brand */}
-      <h1
-        className={`font-extrabold font-serif text-xl tracking-tight ${scrolled || location.pathname !== "/" ? "text-[#1a120b]" : "text-white"}`}
-      >
-        Tour<span className="text-[#c0442a]">stica</span>
-      </h1>
+      <button onClick={() => navigate("/")} className="flex items-center gap-1">
+        <h1
+          className={`font-extrabold font-serif text-xl tracking-tight ${scrolled || location.pathname !== "/" ? "text-[#1a120b]" : "text-white"}`}
+        >
+          Tour<span className="text-[#c0442a]">stica</span>
+        </h1>
+      </button>
 
       {/* Links — hidden on mobile */}
       <div className="hidden md:flex items-center gap-7">

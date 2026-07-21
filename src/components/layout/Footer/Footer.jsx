@@ -7,7 +7,7 @@ import {
 
 // ── Data ──────────────────────────────────────────────────────
 const EXPLORE_LINKS = [
-  { label: "All Experiences", href: "#" },
+  { label: "All Experiences", href: "./trips" },
   { label: "Destinations", href: "#" },
   { label: "Categories", href: "#" },
   { label: "Special Offers", href: "#" },
