@@ -129,32 +129,194 @@ const TRIPS = [
     discount: 19,
   },
 ];
+const initialFilters = {
+  search: "",
+  selectedCategories: [],
+  priceValue: 1500,
+  selectedQuickPriceRange: "",
+  selectedDuration: "",
+  selectedOption: "",
+  sort: "recommended",
+};
+
+const quickPriceRangeValues = {
+  "0-50": 50,
+  "50-150": 150,
+  "150+": 500,
+};
+function filterReducer(state, action) {
+  switch (action.type) {
+    case "SET_SEARCH":
+      return {
+        ...state,
+        search: action.payload,
+      };
+    case "TOGGLE_CATEGORY":
+      return {
+        ...state,
+        selectedCategories: state.selectedCategories.includes(action.payload)
+          ? state.selectedCategories.filter(
+              (category) => category !== action.payload,
+            )
+          : [...state.selectedCategories, action.payload],
+      };
+    case "SET_PRICE":
+      return {
+        ...state,
+        priceValue: action.payload,
+        selectedQuickPriceRange:
+          Object.keys(quickPriceRangeValues).find(
+            (range) => quickPriceRangeValues[range] === action.payload,
+          ) || "",
+      };
+    case "SET_QUICK_PRICE_RANGE": {
+      const nextRange =
+        state.selectedQuickPriceRange === action.payload ? "" : action.payload;
+      return {
+        ...state,
+        selectedQuickPriceRange: nextRange,
+        priceValue: nextRange
+          ? quickPriceRangeValues[nextRange]
+          : state.priceValue,
+      };
+    }
+    case "SET_DURATION":
+      return {
+        ...state,
+        selectedDuration:
+          state.selectedDuration === action.payload ? "" : action.payload,
+      };
+    case "SET_OPTION":
+      return {
+        ...state,
+        selectedOption:
+          state.selectedOption === action.payload ? "" : action.payload,
+      };
+    case "RESET_FILTERS":
+      return initialFilters;
+    case "SET_SORT":
+      return {
+        ...state,
+        sort: action.payload,
+      };
+    default:
+      return state;
+  }
+}
 export default function useTripsHook({
   initialData = TRIPS,
   fetcher = null,
   pageSize = 9,
 } = {}) {
-  const [data, setData] = useState(initialData || []);
+  const [trips, setTrips] = useState(initialData || []);
   const [loading, setLoading] = useState(Boolean(fetcher));
   const [error, setError] = useState(null);
   const [toggleFilterState, setToggleFilterState] = useState(true);
   const [showFilterPanel, setShowFilterPanel] = React.useState(true);
+
+  const [filter, dispatch] = React.useReducer(filterReducer, initialFilters);
+  const searchRef = React.useRef(null);
+
+  const filteredTrips = React.useMemo(() => {
+    const query = filter.search.toLowerCase();
+    console.log("Filtering trips with query:", query, "and filter:", filter);
+    let result = trips.filter((trip) => {
+      const matchesSearch =
+        trip.title?.toLowerCase().includes(query) ||
+        trip.location?.toLowerCase().includes(query);
+      console.log(
+        "matchesSearch:",
+        matchesSearch,
+        "query:",
+        query,
+        "trip.title:",
+        trip.title,
+        "trip.location:",
+        trip.location,
+      );
+
+      const matchesCategory =
+        filter.selectedCategories.length === 0 ||
+        filter.selectedCategories.includes(trip.category);
+      console.log(
+        "matchesCategory:",
+        matchesCategory,
+        "selectedCategories:",
+        filter.selectedCategories,
+        "trip.category:",
+        trip.category,
+      );
+      const matchesPrice = trip.price <= filter.priceValue;
+      console.log(
+        "matchesPrice:",
+        matchesPrice,
+        "trip.price:",
+        trip.price,
+        "filter.priceValue:",
+        filter.priceValue,
+      );
+      const matchesDuration =
+        !filter.selectedDuration ||
+        getDurationBucket(trip.duration) === filter.selectedDuration;
+      console.log(
+        "matchesDuration:",
+        matchesDuration,
+        "trip.duration:",
+        trip.duration,
+        "filter.selectedDuration:",
+        filter.selectedDuration,
+      );
+      // No `options` field on trip trips yet — every trip passes until that's added
+      const matchesOption = !filter.selectedOption || true;
+
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesPrice &&
+        matchesDuration &&
+        matchesOption
+      );
+    });
+
+    if (filter.sort === "priceLowToHigh") {
+      result = [...result].sort((a, b) => a.price - b.price);
+    } else if (filter.sort === "priceHighToLow") {
+      result = [...result].sort((a, b) => b.price - a.price);
+    }
+
+    return result;
+  }, [trips, filter]);
 
   const toggleFilter = () => {
     setToggleFilterState(!toggleFilterState);
   };
 
   const toggleFilterPanel = () => setShowFilterPanel((value) => !value);
+  const priceMax = React.useMemo(
+    () => Math.max(...trips.map((t) => t.price), 0),
+    [trips],
+  );
 
+  function getDurationBucket(hours) {
+    if (hours < 4) return "Half day (under 4h)";
+    if (hours <= 8) return "Full day (4–8h)";
+    return "Multi-day (8h+)";
+  }
   return {
-    trips: data,
-
+    trips: trips,
+    priceMax,
+    getDurationBucket,
     loading,
     error,
     toggleFilter,
     toggleFilterState,
     toggleFilterPanel,
     showFilterPanel,
-    setData,
+    setTrips,
+    filter,
+    dispatch,
+    filteredTrips,
+    searchRef,
+    quickPriceRangeValues,
   };
 }

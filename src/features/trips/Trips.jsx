@@ -5,130 +5,22 @@ import TripCard from "@/components/common/TripCard/TripCard";
 import FilterPanal from "./components/FilterPanal";
 import useTripsHook from "./hooks/useTripsHook";
 import TextField from "../../components/ui/TextField";
-const initialFilters = {
-  search: "",
-  selectedCategories: [],
-  priceValue: 500,
-  selectedQuickPriceRange: "",
-  selectedDuration: "",
-  selectedOption: "",
-  sort: "recommended",
-};
-const quickPriceRangeValues = {
-  "0-50": 50,
-  "50-150": 150,
-  "150+": 500,
-};
+import { Filter } from "lucide-react";
 
-function filterReducer(state, action) {
-  switch (action.type) {
-    case "SET_SEARCH":
-      return {
-        ...state,
-        search: action.payload,
-      };
-    case "TOGGLE_CATEGORY":
-      return {
-        ...state,
-        selectedCategories: state.selectedCategories.includes(action.payload)
-          ? state.selectedCategories.filter(
-              (category) => category !== action.payload,
-            )
-          : [...state.selectedCategories, action.payload],
-      };
-    case "SET_PRICE":
-      return {
-        ...state,
-        priceValue: action.payload,
-        selectedQuickPriceRange:
-          Object.keys(quickPriceRangeValues).find(
-            (range) => quickPriceRangeValues[range] === action.payload,
-          ) || "",
-      };
-    case "SET_QUICK_PRICE_RANGE": {
-      const nextRange =
-        state.selectedQuickPriceRange === action.payload ? "" : action.payload;
-      return {
-        ...state,
-        selectedQuickPriceRange: nextRange,
-        priceValue: nextRange
-          ? quickPriceRangeValues[nextRange]
-          : state.priceValue,
-      };
-    }
-    case "SET_DURATION":
-      return {
-        ...state,
-        selectedDuration:
-          state.selectedDuration === action.payload ? "" : action.payload,
-      };
-    case "SET_OPTION":
-      return {
-        ...state,
-        selectedOption:
-          state.selectedOption === action.payload ? "" : action.payload,
-      };
-    case "RESET_FILTERS":
-      return initialFilters;
-    default:
-      return state;
-  }
-}
 export default function Trips() {
-  const { trips, toggleFilterPanel, showFilterPanel } = useTripsHook();
-  const [filter, dispatch] = React.useReducer(filterReducer, initialFilters);
-  const searchRef = React.useRef(null);
+  const {
+    trips,
+    toggleFilterPanel,
+    showFilterPanel,
+    priceMax,
+    getDurationBucket,
+    filter,
+    dispatch,
+    filteredTrips,
+    searchRef,
+  } = useTripsHook();
 
-  // const filteredTrips = React.useMemo(() => {
-  //   const query = filter.search.toLowerCase();
-  //   return trips.filter((trip) => {
-  //     const matchesSearch =
-  //       trip.title?.toLowerCase().includes(query) ||
-  //       trip.description?.toLowerCase().includes(query);
-  //     return matchesSearch;
-  //   });
-  // }, [trips, filter.search]);
-  function getDurationBucket(hours) {
-    if (hours < 4) return "Half day (under 4h)";
-    if (hours <= 8) return "Full day (4–8h)";
-    return "Multi-day (8h+)";
-  }
-
-  const filteredTrips = React.useMemo(() => {
-    const query = filter.search.toLowerCase();
-
-    return trips.filter((trip) => {
-      const matchesSearch =
-        trip.title?.toLowerCase().includes(query) ||
-        trip.location?.toLowerCase().includes(query);
-        console.log("matchesSearch:", matchesSearch, "query:", query, "trip.title:", trip.title, "trip.location:", trip.location);
-
-      const matchesCategory =
-        filter.selectedCategories.length === 0 ||
-        filter.selectedCategories.includes(trip.category);
-console.log("matchesCategory:", matchesCategory, "selectedCategories:", filter.selectedCategories, "trip.category:", trip.category);
-      const matchesPrice = trip.price <= filter.priceValue;
-console.log("matchesPrice:", matchesPrice, "trip.price:", trip.price, "filter.priceValue:", filter.priceValue);
-      const matchesDuration =
-        !filter.selectedDuration ||
-        getDurationBucket(trip.duration) === filter.selectedDuration;
-console.log("matchesDuration:", matchesDuration, "trip.duration:", trip.duration, "filter.selectedDuration:", filter.selectedDuration);
-      // No `options` field on trip data yet — every trip passes until that's added
-      const matchesOption = !filter.selectedOption || true;
-
-      return (
-        matchesSearch &&
-        matchesCategory &&
-        matchesPrice &&
-        matchesDuration &&
-        matchesOption
-      );
-    });
-  }, [trips, filter]);
-  const priceMax = React.useMemo(
-    () => Math.max(...trips.map((t) => t.price), 0),
-    [trips],
-  );
+  console.log("Filtered Trips:", filteredTrips);
 
   return (
     <div className="w-full  mt-20  ">
@@ -151,7 +43,7 @@ console.log("matchesDuration:", matchesDuration, "trip.duration:", trip.duration
           </div>
         </div>
         <div className="border-t border-l-0 border-r-0 w-full border-2  bg-white mb-3 border-gray-200 ">
-          <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+          <div className="  py-4 w-[80%] m-auto flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <button
                 onClick={toggleFilterPanel}
@@ -159,8 +51,19 @@ console.log("matchesDuration:", matchesDuration, "trip.duration:", trip.duration
               >
                 Filters
               </button>
-              <button className="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 transition duration-200 hover:bg-gray-100 hover:border-gray-300 hover:text-gray-900">
-                Recommended
+              <button className="bg-white flex flex-row gap-2 justify-center items-center border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 transition duration-200 hover:bg-gray-100 hover:border-gray-300 hover:text-gray-900">
+                <Filter size={18} />
+                <select
+                  value={filter.sort}
+                  onChange={(e) =>
+                    dispatch({ type: "SET_SORT", payload: e.target.value })
+                  }
+                  className="bg-transparent border-none outline-none text-sm text-gray-700"
+                >
+                  <option value="recommended">Recommended</option>
+                  <option value="priceLowToHigh">Price: Low to High</option>
+                  <option value="priceHighToLow">Price: High to Low</option>
+                </select>
               </button>
             </div>
             <div className="w-[60%] min-w-0">
@@ -186,7 +89,7 @@ console.log("matchesDuration:", matchesDuration, "trip.duration:", trip.duration
           {/* Filter Panel - Sidebar */}
           {showFilterPanel && (
             <div
-              className={`w-full md:w-full lg:w-80 shrink-0 px-4 sm:px-6 lg:px-0 pb-8 lg:pb-16`}
+              className={` w-full md:w-full lg:w-70 shrink-0 px-4 sm:px-6 lg:px-0 pb-8 lg:pb-16`}
             >
               <div className="sticky top-24">
                 <FilterPanal
@@ -222,7 +125,7 @@ console.log("matchesDuration:", matchesDuration, "trip.duration:", trip.duration
           <div className="flex-1 px-4 sm:px-6 md-[60%]  lg:px-0 pb-12 sm:pb-16">
             <div className="flex">
               <h3 className="font-semibold m-4 text-gray-300">
-                <span className="text-black">{filteredTrips.length}</span>
+                <span className="text-black mr-1">{filteredTrips.length} </span>
                 Experience Found
               </h3>
               <div className="ml-auto">{/* <Tabs/> */}</div>
