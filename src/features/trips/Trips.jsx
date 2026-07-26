@@ -26,7 +26,7 @@ export default function Trips() {
     <div className="w-full  mt-20  ">
       <div className="  w-full">
         <div className="bg-white w-full">
-          <div className="flex bg-white flex-col sm:flex-row py-8 w-[80%] m-auto sm:items-start sm:justify-between gap-8">
+          <div className="flex bg-white flex-col sm:flex-row py-8  w-[80%] m-auto sm:items-start sm:justify-between gap-8">
             <div className="flex-1">
               <Header
                 title="All Experiences"
@@ -36,14 +36,14 @@ export default function Trips() {
               />
             </div>
 
-            <div className="flex gap-4 sm:flex-row flex-wrap sm:flex-nowrap sm:gap-6">
+            <div className="flex gap-4 sm:flex-row flex-wrap sm:flex-nowrap sm:gap-6 ">
               <StatCard number={trips.length} label="Experiences available" />
               <StatCard number="11" label="Destinations covered" count={9} />
             </div>
           </div>
         </div>
-        <div className="border-t border-l-0 border-r-0 w-full border-2  bg-white mb-3 border-gray-200 ">
-          <div className="  py-4 w-[80%] m-auto flex items-center justify-between gap-4">
+        <div className="border-t border-l-0 border-r-0 w-full border-2   bg-white mb-3 border-gray-200 ">
+          <div className="  py-4 w-[80%] lg:w-[80%] flex-wrap lg:flex-nowrap  m-auto flex items-center justify-between  gap-4">
             <div className="flex items-center gap-3">
               <button
                 onClick={toggleFilterPanel}
