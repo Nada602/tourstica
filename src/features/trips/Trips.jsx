@@ -42,7 +42,7 @@ export default function Trips() {
             </div>
           </div>
         </div>
-        <div className="border-t border-l-0 border-r-0 w-full border-2   bg-white mb-3 border-gray-200 ">
+        <div className="  border-t border-l-0 border-r-0 w-full border-2   bg-white mb-3 border-gray-200 ">
           <div className="  py-4 w-[80%] lg:w-[80%] flex-wrap lg:flex-nowrap  m-auto flex items-center justify-between  gap-4">
             <div className="flex items-center gap-3">
               <button
@@ -82,6 +82,31 @@ export default function Trips() {
               Showing {filteredTrips.length} of {trips.length}
             </div>
           </div>
+          {filter.selectedCategories.length > 0 && (
+            <div className=" py-2 px-4 w-[80%] lg:w-[80%] m-auto flex items-center gap-4 text-sm text-gray-700">
+              {filter.selectedCategories.map((category) => (
+                <span
+                  key={category}
+                  className="flex items-center gap-2  border rounded-full px-3 py-2 text-sm text-[#c0442a] transition duration-200 bg-[#f9edeb] border-[#c0442a] hover:text-[#9f2f1f]l "
+                >
+                  {category}
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "TOGGLE_CATEGORY", payload: category })
+                    }
+                  >
+                    &times;
+                  </button>
+                </span>
+              ))}
+              <button
+                className=" text-sm text-gray-500"
+                onClick={() => dispatch({ type: "RESET_FILTERS" })}
+              >
+                Clear All
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Filter + Grid Container */}
@@ -122,7 +147,7 @@ export default function Trips() {
               </div>
             </div>
           )}
-          <div className="flex-1 px-4 sm:px-6 md-[60%]  lg:px-0 pb-12 sm:pb-16">
+          <div className="flex-1 px-4 sm:px-6 md:w-[60%]  lg:px-0 pb-12 sm:pb-16">
             <div className="flex">
               <h3 className="font-semibold m-4 text-gray-300">
                 <span className="text-black mr-1">{filteredTrips.length} </span>

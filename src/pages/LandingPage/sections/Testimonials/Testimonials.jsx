@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Header from "../../../../components/common/Header/Header";
 
 // ── Data ──────────────────────────────────────────────────────
@@ -83,6 +84,7 @@ function ReviewCard({ rating, text, name, location, trip, date, avatar }) {
 }
 
 export default function Testimonials() {
+  const headerRef = useRef(null);
   return (
     <section className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
@@ -90,6 +92,7 @@ export default function Testimonials() {
           eyebrow="Real Reviews"
           title="What Our Guests Say"
           align="center"
+          ref={headerRef}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">

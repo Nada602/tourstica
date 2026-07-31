@@ -57,19 +57,23 @@ import gsap from "gsap";
 import Header from "@/components/common/Header/Header";
 
 export default function NewsTicker() {
-  const rowRef = useRef(null);
+  const rowRef = useRef([]);
+  const headerRef = useRef(null);
 
   useGSAP(() => {
-    const row = rowRef.current;
-    const totalWidth = row.scrollWidth / 2; // عرض نص المحتوى (نسخة واحدة بس)
-
-    gsap.to(row, {
-      x: -totalWidth,
-      duration: 10, // كل ما تقللي الرقم، كل ما السرعة تزيد
-      ease: "none",
-      repeat: -1,
+    gsap.from(rowRef.current, {
+      x: 0,
+      opacity: 0,
+      duration: 2.5,
+      ease: "power1.inOut",
+      // repeat: -1,
+      stagger: 0.25,
     });
   }, []);
+
+  const setRowRef = (el, index) => {
+    if (el) rowRef.current[index] = el;
+  };
 
   return (
     <section className="w-full bg-white py-16 px-6 md:px-10 text-center">
@@ -79,22 +83,25 @@ export default function NewsTicker() {
         accentWord="You"
         subtitle="Choose your adventure style and discover experiences tailored to your interests"
         align="center"
+        ref={headerRef}
       />
       <div className="overflow-hidden w-full  py-3">
-        <div ref={rowRef} className="flex gap-10 w-max whitespace-nowrap">
-          {[...CATEGORIES, ...CATEGORIES, ...CATEGORIES, ...CATEGORIES].map(
-            (cat, i) => (
-              <div key={i} className="flex flex-col items-center shrink-0">
-                <img
-                  src={cat.image}
-                  alt={cat.label}
-                  className="w-28 h-28 rounded-full object-cover"
-                />
-                <span className="mt-2 font-semibold">{cat.label}</span>
-                <span className="text-sm text-gray-400">148 experiences</span>
-              </div>
-            ),
-          )}
+        <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap items-center justify-center m-auto gap-10 w-full ">
+          {[...CATEGORIES].map((cat, i) => (
+            <div
+              key={i}
+              ref={(el) => setRowRef(el, i)}
+              className="flex flex-col items-center shrink-0 hover:scale-105 transition-transform duration-300  cursor-pointer"
+            >
+              <img
+                src={cat.image}
+                alt={cat.label}
+                className="w-28 h-28 rounded-full object-cover hover:border-3 hover:border-amber-700 hover:shadow-lg "
+              />
+              <span className="mt-2 font-semibold">{cat.label}</span>
+              <span className="text-sm text-gray-400">148 experiences</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

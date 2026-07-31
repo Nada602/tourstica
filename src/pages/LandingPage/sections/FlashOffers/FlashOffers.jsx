@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/common/Header/Header";
 
 // ── Countdown Hook ────────────────────────────────────────────
@@ -133,13 +133,18 @@ function OfferCard({
 // ── Main Section ──────────────────────────────────────────────
 export default function FlashOffers() {
   const { hours, minutes, seconds } = useCountdown(END_TIME);
-
+const headerRef = useRef(null);
   return (
     <section className="w-full bg-[#f9f7f4] py-10 sm:py-12 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
         {/* Header row */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 sm:mb-8">
-          <Header eyebrow="Limited Time" title="Flash offers" align="left" />
+          <Header
+            eyebrow="Limited Time"
+            title="Flash offers"
+            align="left"
+            ref={headerRef}
+          />
 
           {/* Countdown */}
           <div className="flex items-center gap-1.5 sm:gap-2">

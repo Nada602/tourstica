@@ -1,5 +1,5 @@
 // ── Feature data ──────────────────────────────────────────────
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./WhyChooseUs.module.css";
 import {
   ShieldCheck, // 100% Secure Booking
@@ -9,7 +9,7 @@ import {
   Globe, // Full Morocco Coverage
   Sparkles, // Exclusive Experiences
 } from "lucide-react";
-import Header from "../../../../components/common/Header/Header";
+import Header from "@/components/common/Header/Header";
 const FEATURES = [
   {
     id: 0,
@@ -61,8 +61,6 @@ const FEATURES = [
   },
 ];
 
-// ── Feature Card ──────────────────────────────────────────────
-// ✅ Correct
 function FeatureCard({ icon: Icon, iconBg, iconColor, title, desc }) {
   return (
     <div className="flex items-start gap-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
@@ -79,8 +77,8 @@ function FeatureCard({ icon: Icon, iconBg, iconColor, title, desc }) {
   );
 }
 
-// ── Main Section ──────────────────────────────────────────────
 export default function WhyChooseUs() {
+  const headerRef = useRef(null);
   return (
     <section className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
@@ -114,6 +112,7 @@ export default function WhyChooseUs() {
             eyebrow="Why Choose Us"
             title="Traveling to Morocco Has Never Been Easier"
             accentWord="Morocco"
+            ref={headerRef}
           />
 
           {/* Features grid: 1 col on mobile, 2 cols on sm+ */}

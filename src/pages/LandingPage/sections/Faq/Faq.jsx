@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Header from "../../../../components/common/Header/Header";
 
-// ── Data ──────────────────────────────────────────────────────
 const FAQS = [
   {
     id: 0,
@@ -42,7 +41,6 @@ const FAQS = [
   },
 ];
 
-// ── FAQ Item ──────────────────────────────────────────────────
 function FaqItem({ question, answer, isOpen, onToggle }) {
   return (
     <div className="border-b border-gray-200 last:border-none">
@@ -54,7 +52,7 @@ function FaqItem({ question, answer, isOpen, onToggle }) {
           {question}
         </span>
         <span
-          className={`flex-shrink-0 w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center transition-transform duration-300 ${
+          className={`shrink-0 w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center transition-transform duration-300 ${
             isOpen ? "rotate-180 border-[#c0442a]" : ""
           }`}
         >
@@ -78,12 +76,11 @@ function FaqItem({ question, answer, isOpen, onToggle }) {
   );
 }
 
-// ── Main Section ──────────────────────────────────────────────
 export default function FAQ() {
   const [openId, setOpenId] = useState(null);
 
   const toggle = (id) => setOpenId((prev) => (prev === id ? null : id));
-
+  const headerRef = useRef(null);
   return (
     <section className="w-full bg-white py-12 sm:py-16 px-4 sm:px-6 md:px-10">
       <div className="max-w-3xl mx-auto">
@@ -91,6 +88,7 @@ export default function FAQ() {
           eyebrow="Got Questions?"
           title="Everything you need to know."
           align="center"
+          ref={headerRef}
         />
 
         <div className="mt-8">

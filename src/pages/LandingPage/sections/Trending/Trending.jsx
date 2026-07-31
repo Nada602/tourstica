@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Flame, Sparkles, TrendingUp } from "lucide-react";
 import styles from "./trending.module.css";
 import Header from "../../../../components/common/Header/Header";
@@ -79,7 +79,7 @@ const TABS = [
 
 export default function Trending() {
   const [activeTab, setActiveTab] = useState("trending");
-
+const headerRef = useRef(null);
   return (
     <section className="w-full bg-[#f9f7f4] py-8 sm:py-12 px-4 sm:px-6 md:px-10">
       <Header
@@ -88,6 +88,7 @@ export default function Trending() {
         accentWord="Trending"
         linkText="Browse all experiences →"
         linkHref="/experiences"
+        ref={headerRef}
       />
       {/* ── Filter tabs ─────────────────────────────────────── */}
       {/* On mobile: full-width pill row, scrollable if needed */}

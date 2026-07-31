@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 // import { MapPin } from "lucide-react";
 import styles from "./destinations.module.css";
 import Header from "../../../../components/common/Header/Header";
@@ -53,6 +53,7 @@ const SLOT_CLASSES = [
 
 // ── Component ─────────────────────────────────────────────────
 export default function Destinations() {
+  const headerRef=useRef(null)
   return (
     <section className={styles.section}>
     
@@ -63,6 +64,7 @@ export default function Destinations() {
         subtitle="From imperial cities to the vast Sahara — every destination is a unique experience"
         linkText="View All →"
         linkHref="/destinations"
+        ref={headerRef}
       />
       {/* Grid */}
       <div className={styles.grid}>

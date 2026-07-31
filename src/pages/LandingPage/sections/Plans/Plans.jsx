@@ -3,6 +3,7 @@ import { useRef } from "react";
 import styles from "./plans.module.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Header from "../../../../components/common/Header/Header";
 
 const STEPS = [
   {
@@ -53,7 +54,7 @@ function StepItem({ id, title, desc, isLast, index, setStepRef }) {
 // ── Main Section ──────────────────────────────────────────────
 export default function Plans() {
   const stepsRef = useRef([]);
-
+  const headerRef = useRef(null);
   useGSAP(() => {
     gsap.from(stepsRef.current, {
       y: 80,
@@ -63,9 +64,9 @@ export default function Plans() {
       stagger: 0.25,
 
       scrollTrigger: {
-        trigger: stepsRef.current[0], // or the whole section
+        trigger: stepsRef.current[0],
         start: "top 80%",
-        toggleActions: "play none none none",
+        toggleActions: "play none play none",
       },
     });
   }, []);
@@ -77,14 +78,12 @@ export default function Plans() {
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
         {/* ── Left: text ──────────────────────────────────── */}
         <div className="flex-1 w-full order-2 lg:order-1">
-          {/* Header */}
-          <p className="flex items-center gap-1.5 text-xs font-semibold text-[#c0442a] uppercase tracking-widest mb-3">
-            <span className="w-4 h-px bg-[#c0442a] inline-block" />
-            Simple Process
-          </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1a120b] leading-tight mb-8">
-            Plan your trip in three steps
-          </h2>
+          <Header
+            eyebrow="Simple Process"
+            title="Plan your trip in three steps"
+            className="mb-8"
+            ref={headerRef}
+          />
 
           {/* Steps */}
           <div>
