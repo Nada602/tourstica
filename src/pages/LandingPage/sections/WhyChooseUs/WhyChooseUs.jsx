@@ -10,6 +10,9 @@ import {
   Sparkles, // Exclusive Experiences
 } from "lucide-react";
 import Header from "@/components/common/Header/Header";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useStaggerReveal } from "../../../../hooks/useStaggerReveal";
 const FEATURES = [
   {
     id: 0,
@@ -61,9 +64,20 @@ const FEATURES = [
   },
 ];
 
-function FeatureCard({ icon: Icon, iconBg, iconColor, title, desc }) {
+function FeatureCard({
+  icon: Icon,
+  iconBg,
+  iconColor,
+  title,
+  desc,
+  setRef,
+  index,
+}) {
   return (
-    <div className="flex items-start gap-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+    <div
+      data-reveal
+      className="flex items-start gap-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+    >
       <div
         className={`${iconBg} w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0`}
       >
@@ -79,8 +93,30 @@ function FeatureCard({ icon: Icon, iconBg, iconColor, title, desc }) {
 
 export default function WhyChooseUs() {
   const headerRef = useRef(null);
+  const circleRef = useRef(null);
+  const sectionRef = useStaggerReveal({
+    x: -50,
+    opacity: 0,
+    duration: 1.5,
+    ease: "power3.inOut",
+    start: "top 80%",
+  });
+
+  useGSAP(() => {
+    gsap.to(circleRef.current, {
+      y: -10,
+      duration: 1.5,
+      ease: "power3.inOut",
+      yoyo: true,
+      repeat: -1,
+    });
+  }, []);
+
   return (
-    <section className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10">
+    <section
+      ref={sectionRef}
+      className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10"
+    >
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
         {/* ── Left: Images ──────────────────────────────────── */}
         <div className="relative w-full max-w-sm lg:max-w-none lg:w-[42%] shrink-0 h-72 sm:h-80 md:h-96 lg:h-[420px]">
@@ -95,7 +131,8 @@ export default function WhyChooseUs() {
 
           {/* Overlapping circle image */}
           <div
-            className={`absolute bottom-0 right-0 w-[54%] h-[58%] rounded-full overflow-hidden border-4 border-[#f9f7f4] shadow-xl ${styles.animated_circle}`}
+            ref={circleRef}
+            className={`absolute bottom-0 right-0 w-[54%] h-[58%] rounded-full overflow-hidden border-4 border-[#f9f7f4] shadow-xl `}
           >
             <img
               src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=500&q=80"
@@ -117,8 +154,8 @@ export default function WhyChooseUs() {
 
           {/* Features grid: 1 col on mobile, 2 cols on sm+ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {FEATURES.map((f) => (
-              <FeatureCard key={f.id} {...f} />
+            {FEATURES.map((f, i) => (
+              <FeatureCard key={f.id} {...f} index={i} />
             ))}
           </div>
         </div>

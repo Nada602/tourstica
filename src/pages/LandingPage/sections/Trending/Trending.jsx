@@ -3,6 +3,7 @@ import { Flame, Sparkles, TrendingUp } from "lucide-react";
 import styles from "./trending.module.css";
 import Header from "../../../../components/common/Header/Header";
 import TripCard from "../../../../components/common/TripCard/TripCard";
+import { useStaggerReveal } from "../../../../hooks/useStaggerReveal";
 // ── Data ──────────────────────────────────────────────────────
 const TRIPS = [
   {
@@ -79,9 +80,19 @@ const TABS = [
 
 export default function Trending() {
   const [activeTab, setActiveTab] = useState("trending");
-const headerRef = useRef(null);
+  const headerRef = useRef(null);
+  const sectionRef = useStaggerReveal({
+    x: 0,
+    opacity: 0,
+    duration: 1.5,
+    ease: "power3.inOut",
+    start: "top 80%",
+  });
   return (
-    <section className="w-full bg-[#f9f7f4] py-8 sm:py-12 px-4 sm:px-6 md:px-10">
+    <section
+      ref={sectionRef}
+      className="w-full bg-[#f9f7f4] py-8 sm:py-12 px-4 sm:px-6 md:px-10"
+    >
       <Header
         eyebrow="What is New"
         title="Trending right now"
@@ -90,8 +101,7 @@ const headerRef = useRef(null);
         linkHref="/experiences"
         ref={headerRef}
       />
-      {/* ── Filter tabs ─────────────────────────────────────── */}
-      {/* On mobile: full-width pill row, scrollable if needed */}
+
       <div className="flex items-center bg-white rounded-full px-1.5 sm:px-2 py-1.5 sm:py-2 gap-1 shadow-sm mb-6 sm:mb-8 overflow-x-auto w-fit max-w-full">
         {TABS.map(({ id, label, Icon }) => (
           <button

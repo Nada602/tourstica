@@ -4,6 +4,7 @@ import styles from "./plans.module.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Header from "../../../../components/common/Header/Header";
+import { useStaggerReveal } from "../../../../hooks/useStaggerReveal";
 
 const STEPS = [
   {
@@ -26,7 +27,7 @@ const STEPS = [
 // ── Step Item ──────────────────────────────────────────────────
 function StepItem({ id, title, desc, isLast, index, setStepRef }) {
   return (
-    <div className="flex gap-4" ref={(el) => setStepRef(el, index)}>
+    <div className="flex gap-4" data-reveal>
       {/* Number + vertical line */}
       <div className="flex flex-col items-center">
         <div className="w-8 h-8 rounded-full bg-[#f0ece6] border-2 border-[#c0442a] flex items-center justify-center flex-shrink-0">
@@ -42,8 +43,7 @@ function StepItem({ id, title, desc, isLast, index, setStepRef }) {
         )}
       </div>
 
-      {/* Text  i will make animation here  */}
-      <div className={`pb-6 ${styles.animatedText}`}>
+      <div className={`pb-6 `}>
         <p className="text-sm font-bold text-[#1a120b] mb-1">{title}</p>
         <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
       </div>
@@ -55,26 +55,19 @@ function StepItem({ id, title, desc, isLast, index, setStepRef }) {
 export default function Plans() {
   const stepsRef = useRef([]);
   const headerRef = useRef(null);
-  useGSAP(() => {
-    gsap.from(stepsRef.current, {
-      y: 80,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      stagger: 0.25,
+  const sectionRef = useStaggerReveal({
+    y: 80,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power3.out",
+    stagger: 0.25,
+  });
 
-      scrollTrigger: {
-        trigger: stepsRef.current[0],
-        start: "top 80%",
-        toggleActions: "play none play none",
-      },
-    });
-  }, []);
-  const setStepRef = (el, index) => {
-    if (el) stepsRef.current[index] = el;
-  };
   return (
-    <section className="w-full bg-white py-12 sm:py-16 px-4 sm:px-6 md:px-10">
+    <section
+      ref={sectionRef}
+      className="w-full bg-white py-12 sm:py-16 px-4 sm:px-6 md:px-10"
+    >
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
         {/* ── Left: text ──────────────────────────────────── */}
         <div className="flex-1 w-full order-2 lg:order-1">
@@ -85,7 +78,6 @@ export default function Plans() {
             ref={headerRef}
           />
 
-          {/* Steps */}
           <div>
             {STEPS.map((step, i) => (
               <StepItem
@@ -93,14 +85,11 @@ export default function Plans() {
                 {...step}
                 isLast={i === STEPS.length - 1}
                 textRef={stepsRef}
-                index={i}
-                setStepRef={setStepRef}
               />
             ))}
           </div>
         </div>
 
-        {/* ── Right: image card ────────────────────────────── */}
         <div className="w-full lg:w-[48%] flex-shrink-0 order-1 lg:order-2">
           <div className="relative rounded-3xl overflow-hidden shadow-xl">
             <img
@@ -109,7 +98,6 @@ export default function Plans() {
               className="w-full h-64 sm:h-80 md:h-96 lg:h-[460px] object-cover"
             />
 
-            {/* Rating badge */}
             <div className="absolute top-4 right-4 bg-white rounded-2xl px-3 py-2 shadow-lg flex flex-col items-center">
               <span className="text-xl font-extrabold text-[#1a120b] leading-none">
                 4.8

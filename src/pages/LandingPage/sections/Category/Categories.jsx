@@ -50,33 +50,27 @@ const CATEGORIES = [
     image: img7,
   },
 ];
-
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Header from "@/components/common/Header/Header";
+import { useStaggerReveal } from "../../../../hooks/useStaggerReveal";
 
 export default function NewsTicker() {
   const rowRef = useRef([]);
   const headerRef = useRef(null);
-
-  useGSAP(() => {
-    gsap.from(rowRef.current, {
-      x: 0,
-      opacity: 0,
-      duration: 2.5,
-      ease: "power1.inOut",
-      // repeat: -1,
-      stagger: 0.25,
-    });
-  }, []);
-
-  const setRowRef = (el, index) => {
-    if (el) rowRef.current[index] = el;
-  };
+  const sectionRef = useStaggerReveal({
+    x: 0,
+    opacity: 0,
+    duration: 3,
+    ease: "power1.inOut",
+  });
 
   return (
-    <section className="w-full bg-white py-16 px-6 md:px-10 text-center">
+    <section
+      ref={sectionRef}
+      className="w-full bg-white py-16 px-6 md:px-10 text-center"
+    >
       <Header
         eyebrow="Explore by Category"
         title="What Do You Want to Do?"
@@ -90,7 +84,7 @@ export default function NewsTicker() {
           {[...CATEGORIES].map((cat, i) => (
             <div
               key={i}
-              ref={(el) => setRowRef(el, i)}
+              data-reveal
               className="flex flex-col items-center shrink-0 hover:scale-105 transition-transform duration-300  cursor-pointer"
             >
               <img

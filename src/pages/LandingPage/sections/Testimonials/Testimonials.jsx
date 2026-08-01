@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import Header from "../../../../components/common/Header/Header";
+import { useStaggerReveal } from "../../../../hooks/useStaggerReveal";
 
 // ── Data ──────────────────────────────────────────────────────
 const REVIEWS = [
@@ -56,7 +57,10 @@ function Stars({ rating }) {
 // ── Review Card ───────────────────────────────────────────────
 function ReviewCard({ rating, text, name, location, trip, date, avatar }) {
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
+    <div
+      data-reveal
+      className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-4"
+    >
       <Stars rating={rating} />
       <p className="text-xs text-gray-500 leading-relaxed italic">"{text}"</p>
 
@@ -85,8 +89,18 @@ function ReviewCard({ rating, text, name, location, trip, date, avatar }) {
 
 export default function Testimonials() {
   const headerRef = useRef(null);
+  const sectionRef = useStaggerReveal({
+    x: 100,
+    opacity: 0,
+    duration: 1.5,
+    ease: "power3.inOut",
+    start: "top 80%",
+  });
   return (
-    <section className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10">
+    <section
+      ref={sectionRef}
+      className="w-full bg-[#f9f7f4] py-12 sm:py-16 px-4 sm:px-6 md:px-10"
+    >
       <div className="max-w-6xl mx-auto">
         <Header
           eyebrow="Real Reviews"

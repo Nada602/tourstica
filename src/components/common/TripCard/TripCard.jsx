@@ -55,7 +55,10 @@ export default function TripCard({
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+    <div
+      data-reveal
+      className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+    >
       <div className="relative h-44 sm:h-48 md:h-52 overflow-hidden flex-shrink-0">
         <img
           src={image}

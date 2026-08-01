@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import Header from "../../../../components/common/Header/Header";
+import Header from "@/components/common/Header/Header";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useStaggerReveal } from "../../../../hooks/useStaggerReveal";
 
 const FAQS = [
   {
@@ -43,7 +46,7 @@ const FAQS = [
 
 function FaqItem({ question, answer, isOpen, onToggle }) {
   return (
-    <div className="border-b border-gray-200 last:border-none">
+    <div className="border-b border-gray-200 last:border-none" data-reveal>
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between gap-4 py-4 sm:py-5 text-left"
@@ -81,8 +84,21 @@ export default function FAQ() {
 
   const toggle = (id) => setOpenId((prev) => (prev === id ? null : id));
   const headerRef = useRef(null);
+  const questionsRef = useRef([]);
+  const sectionRef = useStaggerReveal({
+    y: 100,
+    opacity: 0,
+    duration: 2,
+    ease: "power3.out",
+    stagger: 0.25,
+    start: "top 60%",
+  });
+
   return (
-    <section className="w-full bg-white py-12 sm:py-16 px-4 sm:px-6 md:px-10">
+    <section
+      ref={sectionRef}
+      className="w-full bg-white py-12 sm:py-16 px-4 sm:px-6 md:px-10"
+    >
       <div className="max-w-3xl mx-auto">
         <Header
           eyebrow="Got Questions?"
@@ -92,7 +108,7 @@ export default function FAQ() {
         />
 
         <div className="mt-8">
-          {FAQS.map((faq) => (
+          {FAQS.map((faq, i) => (
             <FaqItem
               key={faq.id}
               {...faq}
